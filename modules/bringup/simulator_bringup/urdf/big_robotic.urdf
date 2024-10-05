@@ -162,6 +162,13 @@
       <child_frame_id>base_link</child_frame_id>
       <odom_publish_frequency>10</odom_publish_frequency>
     </plugin>
+    <plugin
+      filename="ignition-gazebo-pose-publisher-system"
+      name="ignition::gazebo::systems::PosePublisher">
+      <publish_nested_model_pose>true</publish_nested_model_pose>
+      <use_pose_vector_msg>false</use_pose_vector_msg>
+      <update_frequency>10</update_frequency>
+    </plugin>
   </gazebo>
 
 </robot>

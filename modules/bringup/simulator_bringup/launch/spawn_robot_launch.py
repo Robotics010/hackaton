@@ -61,4 +61,11 @@ def generate_launch_description():
 
     ld.add_action(bridge_node)
     
+    ign_converter = Node(
+        package="ign_converter",
+        executable="ign_converter_node",
+    )
+
+    ld.add_action(ign_converter)
+    
     return ld

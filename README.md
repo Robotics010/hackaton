@@ -1,3 +1,3 @@
 # hackaton
 
-* [Quickstart](docs/quickstart.md)
+* [Быстрый старт](docs/quickstart.md)

@@ -106,4 +106,21 @@ def generate_launch_description():
     ld.add_action(declare_autostart_arg)
     ld.add_action(lifecycle_man_node)
     
+    goal_selector_node = Node(
+        package='goal_selector_example',
+        executable='goal_selector_example',
+        name='goal_selector',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            {
+                'use_sim_time': use_sim_time,
+            }],
+        remappings=[
+            ('~/output/goal_pose', '/goal_pose'),
+            ],
+        )
+    
+    ld.add_action(goal_selector_node)
+
     return ld

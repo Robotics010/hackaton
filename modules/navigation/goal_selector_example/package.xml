@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>goal_selector_example</name>
+  <version>0.5.0</version>
+  <description>An example implementation of selecting Goals</description>
+  <maintainer email="kirill.mitkovskii@gmail.com">Robotics010</maintainer>
+  <license>MIT</license>
+
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+
+  <exec_depend>geometry_msgs</exec_depend>
+  
+  <!-- <depend>catch_behavior_msgs</depend> -->
+  <!-- <depend>serial_msgs</depend> -->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_cmake_clang_format</test_depend>
+  <test_depend>ament_cmake_cppcheck</test_depend>
+  <test_depend>ament_cmake_flake8</test_depend>
+  <test_depend>ament_cmake_pep257</test_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

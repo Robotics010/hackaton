@@ -118,6 +118,8 @@ def generate_launch_description():
             }],
         remappings=[
             ('~/output/goal_pose', '/goal_pose'),
+            ('~/output/catch', '/robot/control/catch'),
+            ('~/output/release', '/robot/control/release'),
             ],
         )
     

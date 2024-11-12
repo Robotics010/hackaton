@@ -6,6 +6,7 @@ find_package(rclcpp REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(goal_selector_msgs REQUIRED)
 
 include_directories(
   include
@@ -24,6 +25,7 @@ set(dependencies
   tf2_ros
   tf2_geometry_msgs
   geometry_msgs
+  goal_selector_msgs
 )
 
 add_library(${library_name} SHARED

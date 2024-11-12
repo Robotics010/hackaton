@@ -33,11 +33,15 @@ GoalSelector::GoalSelector() : Node("goal_selector"), state_(INITIALIZING) {
   goal_pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
     "~/output/goal_pose", 10);
 
+  catch_pub_ = this->create_publisher<Catch>("~/output/catch", 10);
+  release_pub_ = this->create_publisher<Catch>("~/output/release", 10);
+
   execution_timer_ =
     this->create_wall_timer(100ms, std::bind(&GoalSelector::tick_execution, this));
 }
 
 void GoalSelector::tick_execution() {
+  // RCLCPP_INFO_STREAM(this->get_logger(), "GoalSelector::tick_execution()");
 
   switch (state_)
   {
@@ -46,11 +50,11 @@ void GoalSelector::tick_execution() {
     break;
 
   case GO_CENTER:
-    state_ = go_center();
+    state_ = go_column();
     break;
   
   case WAITING_CENTER:
-    state_ = waiting_center();
+    state_ = waiting_column();
     break;
   
   case GO_FINISH:
@@ -77,18 +81,18 @@ State GoalSelector::initializing() {
   return GO_CENTER;
 }
 
-State GoalSelector::go_center() {
+State GoalSelector::go_column() {
 
   geometry_msgs::msg::PoseStamped new_goal;
   new_goal.header.stamp = rclcpp::Time();
   new_goal.header.frame_id = "map";
-  new_goal.pose.position.x = 0.0;
-  new_goal.pose.position.y = 0.0;
+  new_goal.pose.position.x = -0.55;
+  new_goal.pose.position.y = -0.05-0.150-0.25/2;
   new_goal.pose.position.z = 0;
   new_goal.pose.orientation.x = 0.0;
   new_goal.pose.orientation.y = 0.0;
-  new_goal.pose.orientation.z = 0.0;
-  new_goal.pose.orientation.w = 1.0;
+  new_goal.pose.orientation.z = 0.7071068;
+  new_goal.pose.orientation.w = 0.7071068;
   goal_pose_pub_->publish(new_goal);
   last_goal_ = new_goal;
   RCLCPP_INFO_STREAM(this->get_logger(),
@@ -103,7 +107,7 @@ State GoalSelector::go_center() {
   return WAITING_CENTER;
 }
 
-State GoalSelector::waiting_center() {
+State GoalSelector::waiting_column() {
   if (!get_current_pose()) {
     RCLCPP_ERROR(
       this->get_logger(),
@@ -113,6 +117,13 @@ State GoalSelector::waiting_center() {
   if (!is_close(current_pose_.pose.position, last_goal_.pose.position)) {
     return WAITING_CENTER;
   }
+
+  get_clock()->sleep_for(rclcpp::Duration(2.5, 0));
+
+  auto catch_msg = Catch();
+  catch_msg.header.stamp = rclcpp::Time();
+  catch_msg.object_type = Catch::COLUMN;
+  catch_pub_->publish(catch_msg);
   
   RCLCPP_INFO_STREAM(this->get_logger(), "going finish");
   return GO_FINISH;
@@ -122,13 +133,13 @@ State GoalSelector::go_finish() {
   geometry_msgs::msg::PoseStamped new_goal;
   new_goal.header.stamp = rclcpp::Time();
   new_goal.header.frame_id = "map";
-  new_goal.pose.position.x = 1.275;
-  new_goal.pose.position.y = -0.775;
+  new_goal.pose.position.x = -1.275-0.15;
+  new_goal.pose.position.y = -0.125;
   new_goal.pose.position.z = 0;
   new_goal.pose.orientation.x = 0.0;
   new_goal.pose.orientation.y = 0.0;
-  new_goal.pose.orientation.z = 0.0;
-  new_goal.pose.orientation.w = 1.0;
+  new_goal.pose.orientation.z = 1.0;
+  new_goal.pose.orientation.w = 0.0;
   goal_pose_pub_->publish(new_goal);
   last_goal_ = new_goal;
   RCLCPP_INFO_STREAM(this->get_logger(),
@@ -153,6 +164,13 @@ State GoalSelector::waiting_finish() {
   if (!is_close(current_pose_.pose.position, last_goal_.pose.position)) {
     return WAITING_FINISH;
   }
+
+  get_clock()->sleep_for(rclcpp::Duration(2.5, 0));
+
+  auto release_msg = Catch();
+  release_msg.header.stamp = rclcpp::Time();
+  release_msg.object_type = Catch::COLUMN;
+  release_pub_->publish(release_msg);
   
   RCLCPP_INFO_STREAM(this->get_logger(), "idle");
   return IDLE;

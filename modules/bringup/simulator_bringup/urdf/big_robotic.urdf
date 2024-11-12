@@ -39,11 +39,16 @@
   <!-- Robot Base -->
   <gazebo reference="base_link">
     <visual>
-      <material name="Cyan">
-        <ambient>0 1.0 1.0 1.0</ambient>
-        <diffuse>0 1.0 1.0 1.0</diffuse>
-        <specular>0 1.0 1.0 1.0</specular>
+      <material name="Eurobot/Blue">
+        <ambient>0 0.3569 0.549 1.0</ambient>
+        <diffuse>0 0.3569 0.549 1.0</diffuse>
+        <specular>0 0.3569 0.549 1.0</specular>
       </material>
+      <!-- <material name="Eurobot/Yellow">
+        <ambient>0.9686 0.7098 0.0 1.0</ambient>
+        <diffuse>0.9686 0.7098 0.0 1.0</diffuse>
+        <specular>0.9686 0.7098 0.0 1.0</specular>
+      </material> -->
     </visual>
   </gazebo>
   <link name="base_link">
@@ -68,6 +73,32 @@
 
   <!-- Robot Footprint -->
   <link name="base_footprint"/>
+
+  <xacro:property name="catch_radius" value="0.150"/>
+
+  <joint name="base_footprint__catch_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="catch_footprint_link" />
+    <origin xyz="${base_length/2 + catch_radius} 0.0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="catch_footprint_link">
+    <visual>
+      <material name="Eurobot/Blue">
+        <ambient>0 0.3569 0.549 0.25</ambient>
+        <diffuse>0 0.3569 0.549 0.25</diffuse>
+        <specular>0 0.3569 0.549 0.25</specular>
+      </material>
+    </visual>
+  </gazebo>
+  <link name="catch_footprint_link">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.001" radius="${catch_radius}"/>
+    </geometry>
+  </visual>
+  </link>
 
   <!-- Wheels -->
   <xacro:macro name="wheel" params="prefix x_reflect y_reflect">
@@ -136,8 +167,18 @@
         <sphere radius="${wheel_radius}"/>
       </geometry>
     </collision>
-    <xacro:sphere_inertia m="0.5" r="${wheel_radius}"/>
+    <xacro:sphere_inertia m="1.0" r="${wheel_radius}"/>
   </link>
+
+  <xacro:macro name="retach_column" params="id">
+    <plugin filename="libignition-gazebo-retachable-joint-system.so" name="ignition::gazebo::systems::RetachableJoint">
+      <parent_link>base_link</parent_link>
+      <child_model>column_${id}</child_model>
+      <child_link>body</child_link>
+      <attach_topic>/column_${id}/attach</attach_topic>
+      <detach_topic>/column_${id}/detach</detach_topic>
+    </plugin>
+  </xacro:macro>
 
   <gazebo>
    <plugin
@@ -169,6 +210,47 @@
       <use_pose_vector_msg>false</use_pose_vector_msg>
       <update_frequency>10</update_frequency>
     </plugin>
+    
+    <xacro:retach_column id="1" />
+    <xacro:retach_column id="2" />
+    <xacro:retach_column id="3" />
+    <xacro:retach_column id="4" />
+    <xacro:retach_column id="5" />
+    <xacro:retach_column id="6" />
+    <xacro:retach_column id="7" />
+    <xacro:retach_column id="8" />
+    <xacro:retach_column id="9" />
+    <xacro:retach_column id="10" />
+    <xacro:retach_column id="11" />
+    <xacro:retach_column id="12" />
+    <xacro:retach_column id="13" />
+    <xacro:retach_column id="14" />
+    <xacro:retach_column id="15" />
+    <xacro:retach_column id="16" />
+    <xacro:retach_column id="17" />
+    <xacro:retach_column id="18" />
+    <xacro:retach_column id="19" />
+    <xacro:retach_column id="20" />
+    <xacro:retach_column id="21" />
+    <xacro:retach_column id="22" />
+    <xacro:retach_column id="23" />
+    <xacro:retach_column id="24" />
+    <xacro:retach_column id="25" />
+    <xacro:retach_column id="26" />
+    <xacro:retach_column id="27" />
+    <xacro:retach_column id="28" />
+    <xacro:retach_column id="29" />
+    <xacro:retach_column id="30" />
+    <xacro:retach_column id="31" />
+    <xacro:retach_column id="32" />
+    <xacro:retach_column id="33" />
+    <xacro:retach_column id="34" />
+    <xacro:retach_column id="35" />
+    <xacro:retach_column id="36" />
+    <xacro:retach_column id="37" />
+    <xacro:retach_column id="38" />
+    <xacro:retach_column id="39" />
+    <xacro:retach_column id="40" />
   </gazebo>
 
 </robot>

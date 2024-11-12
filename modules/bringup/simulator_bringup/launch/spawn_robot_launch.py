@@ -24,12 +24,12 @@ def generate_launch_description():
         default_value=os.path.join(bringup_dir, 'urdf', 'big_robotic.urdf'),
         description='Full path to robot sdf file to spawn the robot in gazebo')
     
-    pose = {'x': LaunchConfiguration('x_pose', default='1.275'),
-            'y': LaunchConfiguration('y_pose', default='-0.775'),
+    pose = {'x': LaunchConfiguration('x_pose', default='0.275'),
+            'y': LaunchConfiguration('y_pose', default='-0.75'),
             'z': LaunchConfiguration('z_pose', default='0.50'),
             'R': LaunchConfiguration('roll', default='0.00'),
             'P': LaunchConfiguration('pitch', default='0.00'),
-            'Y': LaunchConfiguration('yaw', default='3.14')}
+            'Y': LaunchConfiguration('yaw', default='1.57')}
     
     create_robot_cmd = Node(
         package='ros_gz_sim',

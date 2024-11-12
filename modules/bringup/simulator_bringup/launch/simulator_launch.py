@@ -5,7 +5,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.conditions import UnlessCondition
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 
@@ -18,7 +18,8 @@ def generate_launch_description():
     world = LaunchConfiguration('world')
     declare_world_arg = DeclareLaunchArgument(
         'world',
-        default_value=os.path.join(bringup_dir, 'worlds', 'world_only.model'),
+        # default_value=os.path.join(bringup_dir, 'worlds', 'eurobot_2025.model.in'),
+        default_value=os.path.join(bringup_dir, 'worlds', 'eurobot_2025.model'),
         description='Full path to world model file to load')
 
     gazebo_server_launch = IncludeLaunchDescription(
@@ -29,7 +30,11 @@ def generate_launch_description():
                 'gz_sim.launch.py'
             ])
         ),
-        launch_arguments={'gz_args': ['-r -s ', world]}.items(),
+        # launch_arguments={'gz_args': ['-r -s ', Command(['xacro', ' ', world])]}.items(),
+        # launch_arguments={'gz_args': ['-r -s ', world, ' --physics-engine ignition-physics-tpe-plugin']}.items(),
+        launch_arguments={'gz_args': ['-r -s ', world,
+                                      ' -v 4 ',
+                                      ]}.items(),
     )
 
     ld.add_action(declare_world_arg)

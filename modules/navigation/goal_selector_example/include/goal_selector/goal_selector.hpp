@@ -5,6 +5,7 @@
 #include "tf2_ros/buffer.h"
 #include "tf2_ros/transform_listener.h"
 #include "geometry_msgs/msg/pose_stamped.hpp"
+#include "goal_selector_msgs/msg/catch.hpp"
 
 namespace navigation
 {
@@ -20,13 +21,14 @@ enum State {
 
 class GoalSelector : public rclcpp::Node {
  public:
+  using Catch = goal_selector_msgs::msg::Catch;
   GoalSelector();
  private:
   void tick_execution();
   
   State initializing();
-  State go_center();
-  State waiting_center();
+  State go_column();
+  State waiting_column();
   State go_finish();
   State waiting_finish();
   State idle();
@@ -48,6 +50,9 @@ class GoalSelector : public rclcpp::Node {
 
   bool get_current_pose();
   geometry_msgs::msg::PoseStamped current_pose_;
+
+  rclcpp::Publisher<Catch>::SharedPtr catch_pub_;
+  rclcpp::Publisher<Catch>::SharedPtr release_pub_;
 };
 
 }  // namespace navigation

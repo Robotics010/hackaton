@@ -7,7 +7,9 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(goal_selector_msgs REQUIRED)
 
 add_executable(${PROJECT_NAME}_node src/main.cpp)
 
@@ -24,7 +26,9 @@ ament_target_dependencies(${PROJECT_NAME}_node
 )
 ament_target_dependencies(converter
   rclcpp
+  std_msgs
   geometry_msgs
+  goal_selector_msgs
 )
 
 target_link_libraries(${PROJECT_NAME}_node

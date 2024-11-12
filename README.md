@@ -1,6 +1,6 @@
 # Пример решения хакатона "На автопилоте"
 
-ROS2 пакет [goal_selector](modules/navigation/goal_selector_example) является показывает на примере формат решения [хакатона "На автопилоте"](https://navtopilote.dev/ros2-hackathon).
+ROS2 пакет [goal_selector](modules/navigation/goal_selector_example) показывает на примере формат решения [хакатона "На автопилоте"](https://navtopilote.dev/ros2-hackathon).
 
 Для запуска примера локально необходимо:
 
@@ -47,4 +47,4 @@ export GZ_SIM_SYSTEM_PLUGIN_PATH="${GZ_SIM_SYSTEM_PLUGIN_PATH}":~/software/modul
 ros2 launch hackathon_bringup hackathon_launch.py
 ```
 
-Должный открыться два окна: Rviz2 и Gazebo, где робот продемонстриурует доступные возможности.
+Должны открыться два окна: Rviz2 и Gazebo, где робот продемонстриурует доступные возможности.

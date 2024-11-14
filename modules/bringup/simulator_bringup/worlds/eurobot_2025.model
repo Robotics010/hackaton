@@ -175,8 +175,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -207,7 +207,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -220,15 +220,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -252,7 +252,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -265,15 +265,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -310,8 +310,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -336,7 +336,7 @@
       </link>
     </model>
     <model name="platform_1">
-      <pose relative_to="world">-0.674 0.725 0.11649999999999999 0 0 0</pose>
+      <pose relative_to="world">-0.674 0.725 0.11699999999999999 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -354,8 +354,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -379,7 +379,7 @@
       </link>
     </model>
     <model name="platform_2">
-      <pose relative_to="world">-0.676 0.725 0.1315 0 0 0</pose>
+      <pose relative_to="world">-0.676 0.725 0.132 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -397,8 +397,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -441,8 +441,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -473,7 +473,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -486,15 +486,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -518,7 +518,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -531,15 +531,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -576,8 +576,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -602,7 +602,7 @@
       </link>
     </model>
     <model name="platform_3">
-      <pose relative_to="world">0.674 0.725 0.11649999999999999 0 0 0</pose>
+      <pose relative_to="world">0.674 0.725 0.11699999999999999 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -620,8 +620,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -645,7 +645,7 @@
       </link>
     </model>
     <model name="platform_4">
-      <pose relative_to="world">0.676 0.725 0.1315 0 0 0</pose>
+      <pose relative_to="world">0.676 0.725 0.132 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -663,8 +663,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -707,8 +707,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -739,7 +739,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -752,15 +752,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -784,7 +784,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -797,15 +797,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -842,8 +842,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -868,7 +868,7 @@
       </link>
     </model>
     <model name="platform_5">
-      <pose relative_to="world">-1.425 0.324 0.11649999999999999 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">-1.425 0.324 0.11699999999999999 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -886,8 +886,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -911,7 +911,7 @@
       </link>
     </model>
     <model name="platform_6">
-      <pose relative_to="world">-1.425 0.326 0.1315 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">-1.425 0.326 0.132 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -929,8 +929,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -973,8 +973,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1005,7 +1005,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1018,15 +1018,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1050,7 +1050,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1063,15 +1063,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1108,8 +1108,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1134,7 +1134,7 @@
       </link>
     </model>
     <model name="platform_7">
-      <pose relative_to="world">1.425 0.324 0.11649999999999999 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">1.425 0.324 0.11699999999999999 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1152,8 +1152,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1177,7 +1177,7 @@
       </link>
     </model>
     <model name="platform_8">
-      <pose relative_to="world">1.425 0.326 0.1315 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">1.425 0.326 0.132 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1195,8 +1195,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1239,8 +1239,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1271,7 +1271,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1284,15 +1284,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1316,7 +1316,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1329,15 +1329,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1374,8 +1374,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1400,7 +1400,7 @@
       </link>
     </model>
     <model name="platform_9">
-      <pose relative_to="world">-1.425 -0.599 0.11649999999999999 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">-1.425 -0.599 0.11699999999999999 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1418,8 +1418,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1443,7 +1443,7 @@
       </link>
     </model>
     <model name="platform_10">
-      <pose relative_to="world">-1.425 -0.601 0.1315 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">-1.425 -0.601 0.132 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1461,8 +1461,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1505,8 +1505,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1537,7 +1537,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1550,15 +1550,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1582,7 +1582,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1595,15 +1595,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1640,8 +1640,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1666,7 +1666,7 @@
       </link>
     </model>
     <model name="platform_11">
-      <pose relative_to="world">1.425 -0.599 0.11649999999999999 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">1.425 -0.599 0.11699999999999999 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1684,8 +1684,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1709,7 +1709,7 @@
       </link>
     </model>
     <model name="platform_12">
-      <pose relative_to="world">1.425 -0.601 0.1315 0 0 1.5707963267948966</pose>
+      <pose relative_to="world">1.425 -0.601 0.132 0 0 1.5707963267948966</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1727,8 +1727,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1771,8 +1771,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1803,7 +1803,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1816,15 +1816,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1848,7 +1848,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -1861,15 +1861,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -1906,8 +1906,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1932,7 +1932,7 @@
       </link>
     </model>
     <model name="platform_13">
-      <pose relative_to="world">-0.724 -0.75 0.11649999999999999 0 0 0</pose>
+      <pose relative_to="world">-0.724 -0.75 0.11699999999999999 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1950,8 +1950,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -1975,7 +1975,7 @@
       </link>
     </model>
     <model name="platform_14">
-      <pose relative_to="world">-0.726 -0.75 0.1315 0 0 0</pose>
+      <pose relative_to="world">-0.726 -0.75 0.132 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -1993,8 +1993,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2037,8 +2037,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2069,7 +2069,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -2082,15 +2082,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -2114,7 +2114,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -2127,15 +2127,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -2172,8 +2172,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2198,7 +2198,7 @@
       </link>
     </model>
     <model name="platform_15">
-      <pose relative_to="world">0.724 -0.75 0.11649999999999999 0 0 0</pose>
+      <pose relative_to="world">0.724 -0.75 0.11699999999999999 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -2216,8 +2216,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2241,7 +2241,7 @@
       </link>
     </model>
     <model name="platform_16">
-      <pose relative_to="world">0.726 -0.75 0.1315 0 0 0</pose>
+      <pose relative_to="world">0.726 -0.75 0.132 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -2259,8 +2259,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2303,8 +2303,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2335,7 +2335,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -2348,15 +2348,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -2380,7 +2380,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -2393,15 +2393,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -2438,8 +2438,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2464,7 +2464,7 @@
       </link>
     </model>
     <model name="platform_17">
-      <pose relative_to="world">-0.399 -0.05 0.11649999999999999 0 0 0</pose>
+      <pose relative_to="world">-0.399 -0.05 0.1175 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -2482,8 +2482,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2507,7 +2507,7 @@
       </link>
     </model>
     <model name="platform_18">
-      <pose relative_to="world">-0.401 -0.05 0.1315 0 0 0</pose>
+      <pose relative_to="world">-0.401 -0.05 0.1325 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -2525,8 +2525,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2569,8 +2569,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2601,7 +2601,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -2614,15 +2614,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -2646,7 +2646,7 @@
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
           <material>
@@ -2659,15 +2659,15 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
           <geometry>
             <cylinder>
               <radius>0.0365</radius>
-              <length>0.109</length>
+              <length>0.11</length>
             </cylinder>
           </geometry>
         </collision>
@@ -2704,8 +2704,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2730,7 +2730,7 @@
       </link>
     </model>
     <model name="platform_19">
-      <pose relative_to="world">0.399 -0.05 0.11649999999999999 0 0 0</pose>
+      <pose relative_to="world">0.399 -0.05 0.11699999999999999 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -2748,8 +2748,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>
@@ -2773,7 +2773,7 @@
       </link>
     </model>
     <model name="platform_20">
-      <pose relative_to="world">0.401 -0.05 0.1315 0 0 0</pose>
+      <pose relative_to="world">0.401 -0.05 0.132 0 0 0</pose>
       <link name="body">
         <visual name="visual">
           <geometry>
@@ -2791,8 +2791,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.1</mu>
-                <mu2>0.1</mu2>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
               </ode>
             </friction>
           </surface>

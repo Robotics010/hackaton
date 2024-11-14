@@ -65,22 +65,27 @@ class IGNITION_GAZEBO_VISIBLE GameManager
     msgs::Vector3d robot_position_;
     msgs::Quaternion robot_orientation_;
     std::unordered_map<int, msgs::Vector3d> column_positions_;
-    // std::atomic<bool> attachRequested{false};
-    // transport::Node::Publisher attach_cmd_pub_;
+    std::unordered_map<int, msgs::Vector3d> platform_positions_;
 
     void OnRobotCatch(const msgs::StringMsg &_msg);
     std::string robot_catch_topic;
     bool column_catched_ {false};
     int column_id_catched_;
+    bool platform_catched_ {false};
+    int platform_id_catched_;
 
     void OnRobotRelease(const msgs::StringMsg &_msg);
     std::string robot_release_topic;
 
     std::vector<int> get_closest_column_ids_sorted(
       const double& x, const double& y, const double& radius_m);
+    std::vector<int> get_highest_platform_ids_sorted(
+      const double& x, const double& y, const double& radius_m);
 
     std::unordered_map<int, transport::Node::Publisher> attach_column_pubs_;
     std::unordered_map<int, transport::Node::Publisher> detach_column_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> attach_platform_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> detach_platform_pubs_;
 };
 } // namespace systems
 

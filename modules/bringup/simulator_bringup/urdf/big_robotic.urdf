@@ -180,6 +180,16 @@
     </plugin>
   </xacro:macro>
 
+  <xacro:macro name="retach_platform" params="id">
+    <plugin filename="libignition-gazebo-retachable-joint-system.so" name="ignition::gazebo::systems::RetachableJoint">
+      <parent_link>base_link</parent_link>
+      <child_model>platform_${id}</child_model>
+      <child_link>body</child_link>
+      <attach_topic>/platform_${id}/attach</attach_topic>
+      <detach_topic>/platform_${id}/detach</detach_topic>
+    </plugin>
+  </xacro:macro>
+
   <gazebo>
    <plugin
       filename="ignition-gazebo-diff-drive-system"
@@ -251,6 +261,27 @@
     <xacro:retach_column id="38" />
     <xacro:retach_column id="39" />
     <xacro:retach_column id="40" />
+
+    <xacro:retach_platform id="1" />
+    <xacro:retach_platform id="2" />
+    <xacro:retach_platform id="3" />
+    <xacro:retach_platform id="4" />
+    <xacro:retach_platform id="5" />
+    <xacro:retach_platform id="6" />
+    <xacro:retach_platform id="7" />
+    <xacro:retach_platform id="8" />
+    <xacro:retach_platform id="9" />
+    <xacro:retach_platform id="10" />
+    <xacro:retach_platform id="11" />
+    <xacro:retach_platform id="12" />
+    <xacro:retach_platform id="13" />
+    <xacro:retach_platform id="14" />
+    <xacro:retach_platform id="15" />
+    <xacro:retach_platform id="16" />
+    <xacro:retach_platform id="17" />
+    <xacro:retach_platform id="18" />
+    <xacro:retach_platform id="19" />
+    <xacro:retach_platform id="20" />
   </gazebo>
 
 </robot>

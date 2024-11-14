@@ -95,7 +95,19 @@ void GameManager::Configure(const Entity &_entity,
     detach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
     igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
   }
+
+  for (int i = 1; i <= 20; i++) {
+    ss.str(std::string(""));
+    ss << "/platform_" << i << "/attach";
+    attach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
   
+    ss.str(std::string(""));
+    ss << "/platform_" << i << "/detach";
+    detach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
+  }
+
   ignmsg << "GameManager: validConfig=true" << std::endl;
   this->validConfig = true;
 }
@@ -114,6 +126,7 @@ void GameManager::PreUpdate(
 void GameManager::OnPosesInfoUpdate(const msgs::Pose_V &_msg)
 {
   const int column_offset = std::string("column_").length();
+  const int platform_offset = std::string("platform_").length();
 
   for (const auto& pose : _msg.pose()) {
     if (pose.name() == "big_robotic") {
@@ -122,6 +135,9 @@ void GameManager::OnPosesInfoUpdate(const msgs::Pose_V &_msg)
     } else if (pose.name().find("column_") != std::string::npos) {
       int column_id = std::stoi(pose.name().substr(column_offset, pose.name().size() - column_offset));
       column_positions_[column_id] = pose.position();
+    } else if (pose.name().find("platform_") != std::string::npos) {
+      int platform_id = std::stoi(pose.name().substr(platform_offset, pose.name().size() - platform_offset));
+      platform_positions_[platform_id] = pose.position();
     } else {
       continue;
     }
@@ -131,6 +147,12 @@ void GameManager::OnPosesInfoUpdate(const msgs::Pose_V &_msg)
 void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
 {
   igndbg << "GameManager: OnRobotCatch()" << std::endl;
+
+  if (_msg.data() != "COLUMN" && _msg.data() != "PLATFORM") {
+    igndbg << "attach not_supported: '" << _msg.data() << "'" << std::endl;
+    return;
+  }
+
   const double catch_radius = 0.150;
   const double body_offset = 0.25 / 2 + catch_radius;
 
@@ -159,14 +181,26 @@ void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
         << ", y: " << catch_y
         << std::endl;
 
-  auto closest_column_ids = get_closest_column_ids_sorted(catch_x, catch_y, catch_radius);
-  if (!closest_column_ids.empty()) {
-    int closest_id = closest_column_ids[0];
-    msgs::Empty empty_msg;
-    this->attach_column_pubs_[closest_id].Publish(empty_msg);
-    column_catched_ = true;
-    column_id_catched_ = closest_id;
-    igndbg << "attach column " << closest_id << std::endl;
+  if (_msg.data() == "COLUMN") {
+    auto closest_column_ids = get_closest_column_ids_sorted(catch_x, catch_y, catch_radius);
+    if (!closest_column_ids.empty()) {
+      int closest_id = closest_column_ids[0];
+      msgs::Empty empty_msg;
+      this->attach_column_pubs_[closest_id].Publish(empty_msg);
+      column_catched_ = true;
+      column_id_catched_ = closest_id;
+      igndbg << "attach column " << closest_id << std::endl;
+    }
+  } else if (_msg.data() == "PLATFORM") {
+    auto highest_platform_ids = get_highest_platform_ids_sorted(catch_x, catch_y, catch_radius);
+    if (!highest_platform_ids.empty()) {
+      int highest_id = highest_platform_ids[0];
+      msgs::Empty empty_msg;
+      this->attach_platform_pubs_[highest_id].Publish(empty_msg);
+      platform_catched_ = true;
+      platform_id_catched_ = highest_id;
+      igndbg << "attach platform " << highest_id << std::endl;
+    }
   }
 }
 
@@ -174,10 +208,16 @@ void GameManager::OnRobotRelease(const msgs::StringMsg &_msg)
 {
   igndbg << "GameManager: OnRobotRelease()" << std::endl;
   msgs::Empty empty_msg;
-  if (column_catched_) {
+  if (_msg.data() == "COLUMN" && column_catched_) {
     column_catched_ = false;
     this->detach_column_pubs_[column_id_catched_].Publish(empty_msg);
     igndbg << "detach column " << column_id_catched_ << std::endl;
+  } else if (_msg.data() == "PLATFORM" && platform_catched_) {
+    platform_catched_ = false;
+    this->detach_platform_pubs_[platform_id_catched_].Publish(empty_msg);
+    igndbg << "detach platform " << platform_id_catched_ << std::endl;
+  } else {
+    igndbg << "detach not_supported: '" << _msg.data() << "'" << std::endl;
   }
 }
 
@@ -220,6 +260,39 @@ std::vector<int> GameManager::get_closest_column_ids_sorted(const double& x,
     closest_column_ids.push_back(column.first);
   }
   return closest_column_ids;
+}
+
+std::vector<int> GameManager::get_highest_platform_ids_sorted(const double& x,
+                                                              const double& y,
+                                                              const double& radius_m) {
+  typedef std::pair<int,double> PlatformPair;
+  std::vector<PlatformPair> highest_platforms;
+  double x_min, x_max, y_min, y_max;
+  x_min = x - radius_m;
+  x_max = x + radius_m;
+  y_min = y - radius_m;
+  y_max = y + radius_m;
+
+  for (size_t id = 1; id <= platform_positions_.size(); id++) {
+    const auto& platform_position = platform_positions_[id];
+    if ((platform_position.x() > x_min) && (platform_position.x() < x_max)
+          && (platform_position.y() > y_min) && (platform_position.y() < y_max)) {
+      highest_platforms.push_back(PlatformPair(id, platform_position.z()));
+    }
+  }
+
+  std::sort(highest_platforms.begin(), highest_platforms.end(), [](auto &left, auto &right) {
+    return left.second > right.second;
+  });
+
+  std::vector<int> highest_platform_ids;
+  for (const auto& platform : highest_platforms) {
+    igndbg << "highest_platform: "
+           << platform.first << ") " << platform.second
+           << std::endl;
+    highest_platform_ids.push_back(platform.first);
+  }
+  return highest_platform_ids;
 }
 
 IGNITION_ADD_PLUGIN(GameManager,

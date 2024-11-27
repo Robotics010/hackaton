@@ -4,33 +4,62 @@
   gz_type_name: "gz.msgs.Clock"
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/robot/control/odometry"
-  gz_topic_name: "/odom"
+- ros_topic_name: "/blue_robot/control/odometry"
+  gz_topic_name: "/blue/odom"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/robot/control/cmd_vel"
-  gz_topic_name: "/cmd_vel"
+- ros_topic_name: "/yellow_robot/control/odometry"
+  gz_topic_name: "/yellow/odom"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/blue_robot/control/cmd_vel"
+  gz_topic_name: "/blue/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
   direction: ROS_TO_GZ
 
-# those are poses (position+orientation) for all childs of the robot
-# and the last one with the world frame_id is a robot's pose itself,
-- ros_topic_name: "/computer/perception/poses_from_sim"
-  gz_topic_name: "/model/big_robotic/pose"
+- ros_topic_name: "/yellow_robot/control/cmd_vel"
+  gz_topic_name: "/yellow/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/simulator/ground_truth/blue_poses_from_sim"
+  gz_topic_name: "/model/blue/pose"
   ros_type_name: "geometry_msgs/msg/PoseStamped"
   gz_type_name: "gz.msgs.Pose"
+  direction: GZ_TO_ROS
 
-- ros_topic_name: "/robot/control/catch_converted"
-  gz_topic_name: "/model/big_robotic/catch"
+- ros_topic_name: "/simulator/ground_truth/yellow_poses_from_sim"
+  gz_topic_name: "/model/yellow/pose"
+  ros_type_name: "geometry_msgs/msg/PoseStamped"
+  gz_type_name: "gz.msgs.Pose"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/blue_robot/control/catch_converted"
+  gz_topic_name: "/model/blue/catch"
   ros_type_name: "std_msgs/msg/String"
   gz_type_name: "gz.msgs.StringMsg"
   direction: ROS_TO_GZ
 
-- ros_topic_name: "/robot/control/release_converted"
-  gz_topic_name: "/model/big_robotic/release"
+- ros_topic_name: "/blue_robot/control/release_converted"
+  gz_topic_name: "/model/blue/release"
+  ros_type_name: "std_msgs/msg/String"
+  gz_type_name: "gz.msgs.StringMsg"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/yellow_robot/control/catch_converted"
+  gz_topic_name: "/model/yellow/catch"
+  ros_type_name: "std_msgs/msg/String"
+  gz_type_name: "gz.msgs.StringMsg"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/yellow_robot/control/release_converted"
+  gz_topic_name: "/model/yellow/release"
   ros_type_name: "std_msgs/msg/String"
   gz_type_name: "gz.msgs.StringMsg"
   direction: ROS_TO_GZ

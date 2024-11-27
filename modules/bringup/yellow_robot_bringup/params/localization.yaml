@@ -1,0 +1,86 @@
+yellow_robot:
+  map_server:
+    ros__parameters:
+      use_sim_time: True
+      # Overridden in launch by the "map" launch configuration or provided default value.
+      # To use in yaml, remove the default "map" value in the tb3_simulation_launch.py file & provide full path to map below.
+      yaml_filename: ""
+
+yellow_robot:
+  costmap_filter_info_server:
+    ros__parameters:
+      use_sim_time: true
+      type: 0
+      filter_info_topic: "/yellow_robot/costmap_filter_info"
+      mask_topic: "/yellow_robot/keepout_filter_mask"
+      base: 0.0
+      multiplier: 1.0
+
+yellow_robot:
+  filter_mask_server:
+    ros__parameters:
+      use_sim_time: true
+      frame_id: "map"
+      topic_name: "/yellow_robot/keepout_filter_mask"
+
+yellow_robot:
+  local_ekf_node:
+      ros__parameters:
+          frequency: 30.0
+          sensor_timeout: 0.1
+          two_d_mode: false
+          transform_time_offset: 0.0
+          transform_timeout: 0.0
+          print_diagnostics: true
+          debug: false
+
+          map_frame: map
+          odom_frame: odom
+          base_link_frame: base_link
+          world_frame: odom
+
+          odom0: /yellow_robot/control/odometry
+          odom0_config: [false,  false,  false,  # x, y, z,
+                        false, false, false, # roll, pitch, yaw,
+                        true, true, true, # vx, vy, vz,
+                        false, false, true,  # vroll, vpitch, vyaw,
+                        false, false, false] # ax, ay, az.
+          odom0_queue_size: 10
+          odom0_differential: false
+          odom0_relative: false
+
+yellow_robot:
+  global_ekf_node:
+    ros__parameters:
+      frequency: 30.0
+      sensor_timeout: 0.1
+      two_d_mode: false
+      transform_time_offset: 0.0
+      transform_timeout: 0.0
+      print_diagnostics: true
+      debug: false
+
+      map_frame: map
+      odom_frame: odom
+      base_link_frame: base_link
+      world_frame: map
+
+      odom0: /yellow_robot/control/odometry
+      odom0_config: [false,  false,  false,  # x, y, z,
+                      false, false, false, # roll, pitch, yaw,
+                      true, true, true, # vx, vy, vz,
+                      false, false, true,  # vroll, vpitch, vyaw,
+                      false, false, false] # ax, ay, az.
+      odom0_queue_size: 10
+      odom0_differential: false
+      odom0_relative: false
+
+      pose0: /computer/perception/yellow_robot/pose
+      pose0_config: [true,  true,  false, # x, y, z,
+                    false, false, true,  # roll, pitch, yaw,
+                    false, false, false,  # vx, vy, vz,
+                    false, false, false,  # vroll, vpitch, vyaw,
+                    false, false, false]  # ax, ay, az.
+      pose0_queue_size: 10
+      pose0_differential: false
+      pose0_relative: false

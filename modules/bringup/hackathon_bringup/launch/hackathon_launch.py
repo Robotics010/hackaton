@@ -9,51 +9,59 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     ld = LaunchDescription()
 
-    robot = LaunchConfiguration('robot')
-    declare_robot_arg = DeclareLaunchArgument(
-        'robot',
-        default_value='True',
-        description='Whether to start the robot software')
-
     use_sim_time = LaunchConfiguration('use_sim_time')
     declare_use_sim_time_arg = DeclareLaunchArgument(
         'use_sim_time',
         default_value='True',
         description='Use simulation (Gazebo) clock if true')
 
-    drivers = LaunchConfiguration('drivers')
-    declare_drivers_arg = DeclareLaunchArgument(
-        'drivers',
-        default_value='False',
-        description='Whether to start the drivers module')
-    
-    control = LaunchConfiguration('control')
-    declare_control_arg = DeclareLaunchArgument(
-        'control',
-        default_value='False',
-        description='Whether to start the control module')
+    ld.add_action(declare_use_sim_time_arg)
 
-    robot_launch = IncludeLaunchDescription(
+    blue_robot = LaunchConfiguration('blue_robot')
+    declare_blue_robot_arg = DeclareLaunchArgument(
+        'blue_robot',
+        default_value='True',
+        description='Whether to start the blue robot software')
+
+    blue_robot_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([
-                FindPackageShare('robot_bringup'),
+                FindPackageShare('blue_robot_bringup'),
                 'launch',
                 'robot_launch.py'
             ])
         ),
         launch_arguments={
             'use_sim_time': use_sim_time,
-            'drivers': drivers,
-            'control': control,
         }.items(),
-        condition=IfCondition(robot),
+        condition=IfCondition(blue_robot),
     )
 
-    ld.add_action(declare_robot_arg)
-    ld.add_action(declare_use_sim_time_arg)
-    ld.add_action(declare_drivers_arg)
-    ld.add_action(declare_control_arg)
-    ld.add_action(robot_launch)
+    ld.add_action(declare_blue_robot_arg)
+    ld.add_action(blue_robot_launch)
+    
+    yellow_robot = LaunchConfiguration('yellow_robot')
+    declare_yellow_robot_arg = DeclareLaunchArgument(
+        'yellow_robot',
+        default_value='True',
+        description='Whether to start the yellow robot software')
+
+    yellow_robot_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([
+                FindPackageShare('yellow_robot_bringup'),
+                'launch',
+                'robot_launch.py'
+            ])
+        ),
+        launch_arguments={
+            'use_sim_time': use_sim_time,
+        }.items(),
+        condition=IfCondition(yellow_robot),
+    )
+
+    ld.add_action(declare_yellow_robot_arg)
+    ld.add_action(yellow_robot_launch)
 
     simulator = LaunchConfiguration('simulator')
     declare_simulator_arg = DeclareLaunchArgument(

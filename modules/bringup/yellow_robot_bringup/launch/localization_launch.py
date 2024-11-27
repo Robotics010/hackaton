@@ -8,7 +8,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    bringup_dir = get_package_share_directory('robot_bringup')
+    bringup_dir = get_package_share_directory('yellow_robot_bringup')
 
     ld = LaunchDescription()
     
@@ -24,6 +24,7 @@ def generate_launch_description():
         package='nav2_map_server',
         executable='map_server',
         name='map_server',
+        namespace='yellow_robot',
         output='screen',
         parameters=[
             os.path.join(bringup_dir, 'params/localization.yaml'),
@@ -33,7 +34,7 @@ def generate_launch_description():
             }
         ],
         remappings=[
-            ('/map', '/robot/localization/map'),
+            ('/yellow_robot/map', '/yellow_robot/localization/map'),
         ],
     )
 
@@ -43,6 +44,7 @@ def generate_launch_description():
         package='nav2_map_server',
         executable='costmap_filter_info_server',
         name='costmap_filter_info_server',
+        namespace='yellow_robot',
         output='screen',
         emulate_tty=True,
         parameters=[
@@ -55,9 +57,27 @@ def generate_launch_description():
 
     ld.add_action(costmap_filter_info_node)
     
+    filter_map_node = Node(
+        package='nav2_map_server',
+        executable='map_server',
+        name='filter_mask_server',
+        namespace='yellow_robot',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            os.path.join(bringup_dir, 'params/localization.yaml'),
+            {
+                'use_sim_time': use_sim_time,
+                'yaml_filename': os.path.join(bringup_dir, 'maps/eurobot_world_keepout.yaml'),
+            },
+        ],
+    )
+    ld.add_action(filter_map_node)
+
     lifecycle_nodes = [
         'map_server',
         'costmap_filter_info_server',
+        'filter_mask_server',
     ]
     
     autostart = LaunchConfiguration('autostart')
@@ -69,6 +89,7 @@ def generate_launch_description():
         package='nav2_lifecycle_manager',
         executable='lifecycle_manager',
         name='lifecycle_manager_localization',
+        namespace='yellow_robot',
         output='screen',
         parameters=[{'use_sim_time': use_sim_time},
                     {'autostart': autostart},
@@ -81,12 +102,14 @@ def generate_launch_description():
        package='robot_localization',
        executable='ekf_node',
        name='local_ekf_node',
+        namespace='yellow_robot',
        output='screen',
        parameters=[
            os.path.join(bringup_dir, 'params/localization.yaml'),
            {'use_sim_time': use_sim_time}],
        remappings=[
-           ('/odometry/filtered', '/robot/localization/odometry'),
+           ('/yellow_robot/odometry/filtered', '/yellow_robot/localization/odometry'),
+            ('/tf', '/yellow_robot/tf'), ('/tf_static', '/yellow_robot/tf_static'),
            ],
     )
 
@@ -94,13 +117,15 @@ def generate_launch_description():
        package='robot_localization',
        executable='ekf_node',
        name='global_ekf_node',
+       namespace='yellow_robot',
        output='screen',
        parameters=[
            os.path.join(bringup_dir, 'params/localization.yaml'),
            {'use_sim_time': use_sim_time},
        ],
        remappings=[
-           ('/odometry/filtered', '/robot/localization/global'),
+           ('/yellow_robot/odometry/filtered', '/yellow_robot/localization/global'),
+            ('/tf', '/yellow_robot/tf'), ('/tf_static', '/yellow_robot/tf_static'),
        ],
     )
     

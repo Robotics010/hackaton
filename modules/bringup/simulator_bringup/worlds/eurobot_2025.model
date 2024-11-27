@@ -14,7 +14,11 @@
     <plugin filename="libignition-gazebo-user-commands-system.so" name="ignition::gazebo::systems::UserCommands">
   </plugin>
     <plugin filename="libignition-gazebo-scene-broadcaster-system.so" name="ignition::gazebo::systems::SceneBroadcaster">
-  </plugin>
+      <state_hertz>25</state_hertz>
+    </plugin>
+    <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
     <plugin filename="libGameManager.so" name="ignition::gazebo::systems::GameManager">
   </plugin>
     <light name="sun" type="directional">
@@ -2816,217 +2820,217 @@
       </link>
     </model>
     <model name="start_zone_1">
-      <pose relative_to="world">0.275 -0.775 0.0005 0 0 0</pose>
+      <pose relative_to="world">0.275 -0.775 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.45 0.001</size>
+              <size>0.45 0.45 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0 0.3569 0.549 0.9</ambient>
-            <diffuse>0 0.3569 0.549 0.9</diffuse>
-            <specular>0 0.3569 0.549 0.9</specular>
+            <ambient>0 0.3569 0.549 0.85</ambient>
+            <diffuse>0 0.3569 0.549 0.85</diffuse>
+            <specular>0 0.3569 0.549 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="start_zone_2">
-      <pose relative_to="world">-0.275 -0.775 0.0005 0 0 0</pose>
+      <pose relative_to="world">-0.275 -0.775 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.45 0.001</size>
+              <size>0.45 0.45 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.9686 0.7098 0.0 0.9</ambient>
-            <diffuse>0.9686 0.7098 0.0 0.9</diffuse>
-            <specular>0.9686 0.7098 0.0 0.9</specular>
+            <ambient>0.9686 0.7098 0.0 0.85</ambient>
+            <diffuse>0.9686 0.7098 0.0 0.85</diffuse>
+            <specular>0.9686 0.7098 0.0 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="start_zone_3">
-      <pose relative_to="world">-1.275 -0.125 0.0005 0 0 0</pose>
+      <pose relative_to="world">-1.275 -0.125 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.45 0.001</size>
+              <size>0.45 0.45 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0 0.3569 0.549 0.9</ambient>
-            <diffuse>0 0.3569 0.549 0.9</diffuse>
-            <specular>0 0.3569 0.549 0.9</specular>
+            <ambient>0 0.3569 0.549 0.85</ambient>
+            <diffuse>0 0.3569 0.549 0.85</diffuse>
+            <specular>0 0.3569 0.549 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="start_zone_4">
-      <pose relative_to="world">1.275 -0.125 0.0005 0 0 0</pose>
+      <pose relative_to="world">1.275 -0.125 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.45 0.001</size>
+              <size>0.45 0.45 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.9686 0.7098 0.0 0.9</ambient>
-            <diffuse>0.9686 0.7098 0.0 0.9</diffuse>
-            <specular>0.9686 0.7098 0.0 0.9</specular>
+            <ambient>0.9686 0.7098 0.0 0.85</ambient>
+            <diffuse>0.9686 0.7098 0.0 0.85</diffuse>
+            <specular>0.9686 0.7098 0.0 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="finish_zone_5">
-      <pose relative_to="world">1.125 0.775 0.0005 0 0 0</pose>
+      <pose relative_to="world">1.125 0.775 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.45 0.001</size>
+              <size>0.45 0.45 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0 0.3569 0.549 0.9</ambient>
-            <diffuse>0 0.3569 0.549 0.9</diffuse>
-            <specular>0 0.3569 0.549 0.9</specular>
+            <ambient>0 0.3569 0.549 0.85</ambient>
+            <diffuse>0 0.3569 0.549 0.85</diffuse>
+            <specular>0 0.3569 0.549 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="finish_zone_6">
-      <pose relative_to="world">-1.125 0.775 0.0005 0 0 0</pose>
+      <pose relative_to="world">-1.125 0.775 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.45 0.001</size>
+              <size>0.45 0.45 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.9686 0.7098 0.0 0.9</ambient>
-            <diffuse>0.9686 0.7098 0.0 0.9</diffuse>
-            <specular>0.9686 0.7098 0.0 0.9</specular>
+            <ambient>0.9686 0.7098 0.0 0.85</ambient>
+            <diffuse>0.9686 0.7098 0.0 0.85</diffuse>
+            <specular>0.9686 0.7098 0.0 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="construction_zone_7">
-      <pose relative_to="world">0.725 -0.925 0.0005 0 0 0</pose>
+      <pose relative_to="world">0.725 -0.925 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.15 0.001</size>
+              <size>0.45 0.15 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0 0.3569 0.549 0.9</ambient>
-            <diffuse>0 0.3569 0.549 0.9</diffuse>
-            <specular>0 0.3569 0.549 0.9</specular>
+            <ambient>0 0.3569 0.549 0.85</ambient>
+            <diffuse>0 0.3569 0.549 0.85</diffuse>
+            <specular>0 0.3569 0.549 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="construction_zone_8">
-      <pose relative_to="world">-0.725 -0.925 0.0005 0 0 0</pose>
+      <pose relative_to="world">-0.725 -0.925 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.15 0.001</size>
+              <size>0.45 0.15 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.9686 0.7098 0.0 0.9</ambient>
-            <diffuse>0.9686 0.7098 0.0 0.9</diffuse>
-            <specular>0.9686 0.7098 0.0 0.9</specular>
+            <ambient>0.9686 0.7098 0.0 0.85</ambient>
+            <diffuse>0.9686 0.7098 0.0 0.85</diffuse>
+            <specular>0.9686 0.7098 0.0 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="construction_zone_9">
-      <pose relative_to="world">-1.275 -0.925 0.0005 0 0 0</pose>
+      <pose relative_to="world">-1.275 -0.925 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.15 0.001</size>
+              <size>0.45 0.15 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0 0.3569 0.549 0.9</ambient>
-            <diffuse>0 0.3569 0.549 0.9</diffuse>
-            <specular>0 0.3569 0.549 0.9</specular>
+            <ambient>0 0.3569 0.549 0.85</ambient>
+            <diffuse>0 0.3569 0.549 0.85</diffuse>
+            <specular>0 0.3569 0.549 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="construction_zone_10">
-      <pose relative_to="world">1.275 -0.925 0.0005 0 0 0</pose>
+      <pose relative_to="world">1.275 -0.925 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.15 0.001</size>
+              <size>0.45 0.15 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.9686 0.7098 0.0 0.9</ambient>
-            <diffuse>0.9686 0.7098 0.0 0.9</diffuse>
-            <specular>0.9686 0.7098 0.0 0.9</specular>
+            <ambient>0.9686 0.7098 0.0 0.85</ambient>
+            <diffuse>0.9686 0.7098 0.0 0.85</diffuse>
+            <specular>0.9686 0.7098 0.0 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="reserved_zone_11">
-      <pose relative_to="world">0.675 0.675 0.0005 0 0 0</pose>
+      <pose relative_to="world">0.675 0.675 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.25 0.001</size>
+              <size>0.45 0.25 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0 0.3569 0.549 0.9</ambient>
-            <diffuse>0 0.3569 0.549 0.9</diffuse>
-            <specular>0 0.3569 0.549 0.9</specular>
+            <ambient>0 0.3569 0.549 0.85</ambient>
+            <diffuse>0 0.3569 0.549 0.85</diffuse>
+            <specular>0 0.3569 0.549 0.85</specular>
           </material>
         </visual>
       </link>
     </model>
     <model name="reserved_zone_12">
-      <pose relative_to="world">-0.675 0.675 0.0005 0 0 0</pose>
+      <pose relative_to="world">-0.675 0.675 -0.01 0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.45 0.25 0.001</size>
+              <size>0.45 0.25 0.04</size>
             </box>
           </geometry>
           <material>
-            <ambient>0.9686 0.7098 0.0 0.9</ambient>
-            <diffuse>0.9686 0.7098 0.0 0.9</diffuse>
-            <specular>0.9686 0.7098 0.0 0.9</specular>
+            <ambient>0.9686 0.7098 0.0 0.85</ambient>
+            <diffuse>0.9686 0.7098 0.0 0.85</diffuse>
+            <specular>0.9686 0.7098 0.0 0.85</specular>
           </material>
         </visual>
       </link>

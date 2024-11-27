@@ -8,7 +8,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    bringup_dir = get_package_share_directory('robot_bringup')
+    bringup_dir = get_package_share_directory('blue_robot_bringup')
     
     ld = LaunchDescription()
 
@@ -24,18 +24,23 @@ def generate_launch_description():
         package='nav2_bt_navigator',
         executable='bt_navigator',
         name='bt_navigator',
+        namespace='blue_robot',
         output='screen',
         parameters=[
             os.path.join(bringup_dir, 'params/navigation.yaml'),
             {
                 'use_sim_time': use_sim_time,
             }],
+        remappings=[
+            ('/tf', '/blue_robot/tf'), ('/tf_static', '/blue_robot/tf_static'),
+            ],
         )
 
     planner_node = Node(
         package='nav2_planner',
         executable='planner_server',
         name='planner_server',
+        namespace='blue_robot',
         output='screen',
         parameters=[
             os.path.join(bringup_dir, 'params/navigation.yaml'),
@@ -43,13 +48,15 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
             }],
         remappings=[
-            ('/map', '/robot/localization/map'),
+            ('/blue_robot/map', '/blue_robot/localization/map'),
+            ('/tf', '/blue_robot/tf'), ('/tf_static', '/blue_robot/tf_static'),
             ],
         )
 
     controller_node = Node(
         package='nav2_controller',
         executable='controller_server',
+        namespace='blue_robot',
         output='screen',
         parameters=[
             os.path.join(bringup_dir, 'params/navigation.yaml'),
@@ -57,8 +64,10 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
             }],
         remappings=[
-            ('cmd_vel', '/robot/control/cmd_vel'),
-            ('odom', '/robot/localization/odometry'),
+            ('/blue_robot/cmd_vel', '/blue_robot/control/cmd_vel'),
+            ('/blue_robot/odom', '/blue_robot/localization/odometry'),
+            ('/tf', '/blue_robot/tf'), ('/tf_static', '/blue_robot/tf_static'),
+            ('/trajectories', '/blue_robot/trajectories'),
             ],
         )
 
@@ -66,6 +75,7 @@ def generate_launch_description():
         package='nav2_behaviors',
         executable='behavior_server',
         name='behavior_server',
+        namespace='blue_robot',
         output='screen',
         parameters=[
             os.path.join(bringup_dir, 'params/navigation.yaml'),
@@ -73,7 +83,8 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
             }],
         remappings=[
-            ('cmd_vel', '/robot/control/cmd_vel'),
+            ('/blue_robot/cmd_vel', '/blue_robot/control/cmd_vel'),
+            ('/tf', '/blue_robot/tf'), ('/tf_static', '/blue_robot/tf_static'),
             ],
         )
     
@@ -98,6 +109,7 @@ def generate_launch_description():
         package='nav2_lifecycle_manager',
         executable='lifecycle_manager',
         name='lifecycle_manager_navigation',
+        namespace='blue_robot',
         output='screen',
         parameters=[{'use_sim_time': use_sim_time},
                     {'autostart': autostart},
@@ -110,6 +122,7 @@ def generate_launch_description():
         package='goal_selector_example',
         executable='goal_selector_example',
         name='goal_selector',
+        namespace='blue_robot',
         output='screen',
         emulate_tty=True,
         parameters=[
@@ -117,9 +130,11 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
             }],
         remappings=[
-            ('~/output/goal_pose', '/goal_pose'),
-            ('~/output/catch', '/robot/control/catch'),
-            ('~/output/release', '/robot/control/release'),
+            ('~/output/goal_pose', '/blue_robot/goal_pose'),
+            ('~/input/goal_completed', '/blue_robot/goal_completed'),
+            ('~/output/catch', '/blue_robot/control/catch'),
+            ('~/output/release', '/blue_robot/control/release'),
+            ('/tf', '/blue_robot/tf'), ('/tf_static', '/blue_robot/tf_static'),
             ],
         )
     

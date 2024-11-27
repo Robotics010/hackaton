@@ -47,4 +47,16 @@ export GZ_SIM_SYSTEM_PLUGIN_PATH="${GZ_SIM_SYSTEM_PLUGIN_PATH}":~/software/modul
 ros2 launch hackathon_bringup hackathon_launch.py
 ```
 
-Должны открыться два окна: Rviz2 и Gazebo, где робот продемонстриурует доступные возможности.
+Должны открыться три окна: Rviz2 одного робота, Rviz2 второго робота и Gazebo, где оба робота демонстрируют свою работу.
+
+### Команды launch
+
+* `blue_robot:=False` - не добавлять blue_robot
+* `blue_pose_x:=0.275` - задать начальный x blue_robot
+* `blue_pose_y:=-0.75` - задать начальный y blue_robot
+* `blue_pose_yaw:=1.57` - задать начальный угол blue_robot
+* `yellow_robot:=False` - не добавлять yellow_robot
+* `yellow_pose_x:=-0.275` - задать начальный x yellow_robot
+* `yellow_pose_y:=-0.75` - задать начальный y yellow_robot
+* `yellow_pose_yaw:=1.57` - задать начальный угол yellow_robot
+

@@ -32,6 +32,8 @@ GoalSelector::GoalSelector() : Node("goal_selector"), state_(INITIALIZING) {
   
   goal_pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
     "~/output/goal_pose", 10);
+  goal_completed_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>(
+      "~/input/goal_completed", 10, std::bind(&GoalSelector::goal_completed_callback, this, _1));
 
   catch_pub_ = this->create_publisher<Catch>("~/output/catch", 10);
   release_pub_ = this->create_publisher<Catch>("~/output/release", 10);
@@ -40,7 +42,7 @@ GoalSelector::GoalSelector() : Node("goal_selector"), state_(INITIALIZING) {
     this->create_wall_timer(100ms, std::bind(&GoalSelector::tick_execution, this));
 }
 
-void GoalSelector::tick_execution() {
+void GoalSelector::tick_execution() { // state_machine = конечный автомат
   // RCLCPP_INFO_STREAM(this->get_logger(), "GoalSelector::tick_execution()");
 
   switch (state_)
@@ -95,6 +97,7 @@ State GoalSelector::go_column() {
   new_goal.pose.orientation.w = 0.7071068;
   goal_pose_pub_->publish(new_goal);
   last_goal_ = new_goal;
+  last_goal_completed_ = false;
   RCLCPP_INFO_STREAM(this->get_logger(),
                     "send goal, pose, x: " << new_goal.pose.position.x
                     << ", y: " << new_goal.pose.position.y
@@ -114,7 +117,7 @@ State GoalSelector::waiting_column() {
       "No current pose available...");
   }
 
-  if (!is_close(current_pose_.pose.position, last_goal_.pose.position)) {
+  if (!last_goal_completed_) {
     return WAITING_CENTER;
   }
 
@@ -161,7 +164,7 @@ State GoalSelector::waiting_finish() {
       "No current pose available...");
   }
 
-  if (!is_close(current_pose_.pose.position, last_goal_.pose.position)) {
+  if (!last_goal_completed_) {
     return WAITING_FINISH;
   }
 
@@ -216,6 +219,13 @@ bool GoalSelector::get_current_pose() {
     return false;
   }
   return true;
+}
+
+void GoalSelector::goal_completed_callback(const geometry_msgs::msg::PoseStamped & pose) {
+  if (last_goal_.pose == pose.pose) {
+    last_goal_completed_ = true;
+    RCLCPP_INFO(this->get_logger(), "goal_completed!");
+  }
 }
 
 bool GoalSelector::is_close(const geometry_msgs::msg::Point& one,

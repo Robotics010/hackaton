@@ -45,8 +45,11 @@ class GoalSelector : public rclcpp::Node {
   rclcpp::TimerBase::SharedPtr execution_timer_;
   State state_;
 
+  void goal_completed_callback(const geometry_msgs::msg::PoseStamped & pose);
   rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr goal_pose_pub_;
+  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_completed_sub_;
   geometry_msgs::msg::PoseStamped last_goal_;
+  bool last_goal_completed_;
 
   bool get_current_pose();
   geometry_msgs::msg::PoseStamped current_pose_;

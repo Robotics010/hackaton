@@ -49,62 +49,107 @@ void GameManager::Configure(const Entity &_entity,
   igndbg << "GameManager: Configure()" << std::endl;
 
   column_positions_.reserve(40);
+  platform_positions_.reserve(20);
 
   std::string defaultPosesInfoTopic{"/world/car_world/pose/info"};
   this->poses_info_topic = _sdf->Get<std::string>("poses_info_topic", defaultPosesInfoTopic).first;
-  
+
   this->node.Subscribe(
     this->poses_info_topic, &GameManager::OnPosesInfoUpdate, this);
   
   igndbg << "GameManager subscribing to messages on "
           << "[" << this->poses_info_topic << "]" << std::endl;
 
-  std::string defaultRobotCatchTopic{"/model/big_robotic/catch"};
-  this->robot_catch_topic = _sdf->Get<std::string>("robot_catch_topic", defaultRobotCatchTopic).first;
+  std::string blue_robot_catch_topic{"/model/blue/catch"};
   
-  if (!this->node.Subscribe(this->robot_catch_topic, &GameManager::OnRobotCatch, this)) {
+  if (!this->node.Subscribe(blue_robot_catch_topic, &GameManager::OnBlueRobotCatch, this)) {
     ignerr << "GameManager Error subscribing to topic "
-          << "[" << this->robot_catch_topic << "]" << std::endl;
+          << "[" << blue_robot_catch_topic << "]" << std::endl;
     return;
   }
   
   igndbg << "GameManager subscribing to messages on "
-          << "[" << this->robot_catch_topic << "]" << std::endl;
+          << "[" << blue_robot_catch_topic << "]" << std::endl;
 
-  std::string defaultRobotReleaseTopic{"/model/big_robotic/release"};
-  this->robot_release_topic = _sdf->Get<std::string>("robot_release_topic", defaultRobotReleaseTopic).first;
+  std::string blue_robot_release_topic{"/model/blue/release"};
   
-  if (!this->node.Subscribe(this->robot_release_topic, &GameManager::OnRobotRelease, this)) {
+  if (!this->node.Subscribe(blue_robot_release_topic, &GameManager::OnBlueRobotRelease, this)) {
     ignerr << "GameManager Error subscribing to topic "
-          << "[" << this->robot_release_topic << "]" << std::endl;
+          << "[" << blue_robot_release_topic << "]" << std::endl;
     return;
   }
 
   igndbg << "GameManager subscribing to messages on "
-          << "[" << this->robot_release_topic << "]" << std::endl;
+          << "[" << blue_robot_release_topic << "]" << std::endl;
   
   std::stringstream ss;
   for (int i = 1; i <= 40; i++) {
     ss.str(std::string(""));
-    ss << "/column_" << i << "/attach";
-    attach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    ss << "/blue/column_" << i << "/attach";
+    blue_attach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
     igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
 
     ss.str(std::string(""));
-    ss << "/column_" << i << "/detach";
-    detach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    ss << "/blue/column_" << i << "/detach";
+    blue_detach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
     igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
   }
 
   for (int i = 1; i <= 20; i++) {
     ss.str(std::string(""));
-    ss << "/platform_" << i << "/attach";
-    attach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    ss << "/blue/platform_" << i << "/attach";
+    blue_attach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
     igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
   
     ss.str(std::string(""));
-    ss << "/platform_" << i << "/detach";
-    detach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    ss << "/blue/platform_" << i << "/detach";
+    blue_detach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
+  }
+
+  std::string yellow_robot_catch_topic{"/model/yellow/catch"};
+  
+  if (!this->node.Subscribe(yellow_robot_catch_topic, &GameManager::OnYellowRobotCatch, this)) {
+    ignerr << "GameManager Error subscribing to topic "
+          << "[" << yellow_robot_catch_topic << "]" << std::endl;
+    return;
+  }
+  
+  igndbg << "GameManager subscribing to messages on "
+          << "[" << yellow_robot_catch_topic << "]" << std::endl;
+
+  std::string yellow_robot_release_topic{"/model/yellow/release"};
+  
+  if (!this->node.Subscribe(yellow_robot_release_topic, &GameManager::OnYellowRobotRelease, this)) {
+    ignerr << "GameManager Error subscribing to topic "
+          << "[" << yellow_robot_release_topic << "]" << std::endl;
+    return;
+  }
+
+  igndbg << "GameManager subscribing to messages on "
+          << "[" << yellow_robot_release_topic << "]" << std::endl;
+  
+  for (int i = 1; i <= 40; i++) {
+    ss.str(std::string(""));
+    ss << "/yellow/column_" << i << "/attach";
+    yellow_attach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
+
+    ss.str(std::string(""));
+    ss << "/yellow/column_" << i << "/detach";
+    yellow_detach_column_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
+  }
+
+  for (int i = 1; i <= 20; i++) {
+    ss.str(std::string(""));
+    ss << "/yellow/platform_" << i << "/attach";
+    yellow_attach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
+    igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
+  
+    ss.str(std::string(""));
+    ss << "/yellow/platform_" << i << "/detach";
+    yellow_detach_platform_pubs_[i] = this->node.Advertise<msgs::Empty>(ss.str());
     igndbg << "GameManager advertising messages on " << "[" << ss.str() << "]" << std::endl;
   }
 
@@ -129,10 +174,13 @@ void GameManager::OnPosesInfoUpdate(const msgs::Pose_V &_msg)
   const int platform_offset = std::string("platform_").length();
 
   for (const auto& pose : _msg.pose()) {
-    if (pose.name() == "big_robotic") {
-      robot_position_ = pose.position();
-      robot_orientation_ = pose.orientation();
-    } else if (pose.name().find("column_") != std::string::npos) {
+    if (pose.name() == "blue") {
+      blue_robot_position_ = pose.position();
+      blue_robot_orientation_ = pose.orientation();
+    } else if (pose.name() == "yellow") {
+      yellow_robot_position_ = pose.position();
+      yellow_robot_orientation_ = pose.orientation();
+    }else if (pose.name().find("column_") != std::string::npos) {
       int column_id = std::stoi(pose.name().substr(column_offset, pose.name().size() - column_offset));
       column_positions_[column_id] = pose.position();
     } else if (pose.name().find("platform_") != std::string::npos) {
@@ -144,9 +192,9 @@ void GameManager::OnPosesInfoUpdate(const msgs::Pose_V &_msg)
   }
 }
 
-void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
+void GameManager::OnBlueRobotCatch(const msgs::StringMsg &_msg)
 {
-  igndbg << "GameManager: OnRobotCatch()" << std::endl;
+  igndbg << "GameManager: OnBlueRobotCatch()" << std::endl;
 
   if (_msg.data() != "COLUMN" && _msg.data() != "PLATFORM") {
     igndbg << "attach not_supported: '" << _msg.data() << "'" << std::endl;
@@ -157,10 +205,10 @@ void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
   const double body_offset = 0.25 / 2 + catch_radius;
 
   gz::math::Quaterniond robot_quaternion(
-    robot_orientation_.w(),
-    robot_orientation_.x(),
-    robot_orientation_.y(),
-    robot_orientation_.z());
+    blue_robot_orientation_.w(),
+    blue_robot_orientation_.x(),
+    blue_robot_orientation_.y(),
+    blue_robot_orientation_.z());
   gz::math::Vector3d robot_euler(robot_quaternion.Euler());
 
   const double initial_vector_x = 1.0 * body_offset;
@@ -169,12 +217,12 @@ void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
   const double projected_offset_x = initial_vector_x * std::cos(robot_euler.Z()) - initial_vector_y * std::sin(robot_euler.Z());
   const double projected_offset_y = initial_vector_y * std::cos(robot_euler.Z()) + initial_vector_x * std::sin(robot_euler.Z());
 
-  const double catch_x = robot_position_.x() + projected_offset_x;
-  const double catch_y = robot_position_.y() + projected_offset_y;
+  const double catch_x = blue_robot_position_.x() + projected_offset_x;
+  const double catch_y = blue_robot_position_.y() + projected_offset_y;
 
-  igndbg << "robot_position"
-        << ", x: " << robot_position_.x()
-        << ", y: " << robot_position_.y()
+  igndbg << "blue_position"
+        << ", x: " << blue_robot_position_.x()
+        << ", y: " << blue_robot_position_.y()
         << std::endl;
   igndbg << "catch"
         << ", x: " << catch_x
@@ -186,9 +234,9 @@ void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
     if (!closest_column_ids.empty()) {
       int closest_id = closest_column_ids[0];
       msgs::Empty empty_msg;
-      this->attach_column_pubs_[closest_id].Publish(empty_msg);
-      column_catched_ = true;
-      column_id_catched_ = closest_id;
+      this->blue_attach_column_pubs_[closest_id].Publish(empty_msg);
+      blue_column_catched_ = true;
+      blue_column_id_catched_ = closest_id;
       igndbg << "attach column " << closest_id << std::endl;
     }
   } else if (_msg.data() == "PLATFORM") {
@@ -196,26 +244,103 @@ void GameManager::OnRobotCatch(const msgs::StringMsg &_msg)
     if (!highest_platform_ids.empty()) {
       int highest_id = highest_platform_ids[0];
       msgs::Empty empty_msg;
-      this->attach_platform_pubs_[highest_id].Publish(empty_msg);
-      platform_catched_ = true;
-      platform_id_catched_ = highest_id;
+      this->blue_attach_platform_pubs_[highest_id].Publish(empty_msg);
+      blue_platform_catched_ = true;
+      blue_platform_id_catched_ = highest_id;
       igndbg << "attach platform " << highest_id << std::endl;
     }
   }
 }
 
-void GameManager::OnRobotRelease(const msgs::StringMsg &_msg)
+void GameManager::OnBlueRobotRelease(const msgs::StringMsg &_msg)
 {
-  igndbg << "GameManager: OnRobotRelease()" << std::endl;
+  igndbg << "GameManager: OnBlueRobotRelease()" << std::endl;
   msgs::Empty empty_msg;
-  if (_msg.data() == "COLUMN" && column_catched_) {
-    column_catched_ = false;
-    this->detach_column_pubs_[column_id_catched_].Publish(empty_msg);
-    igndbg << "detach column " << column_id_catched_ << std::endl;
-  } else if (_msg.data() == "PLATFORM" && platform_catched_) {
-    platform_catched_ = false;
-    this->detach_platform_pubs_[platform_id_catched_].Publish(empty_msg);
-    igndbg << "detach platform " << platform_id_catched_ << std::endl;
+  if (_msg.data() == "COLUMN" && blue_column_catched_) {
+    blue_column_catched_ = false;
+    this->blue_detach_column_pubs_[blue_column_id_catched_].Publish(empty_msg);
+    igndbg << "detach column " << blue_column_id_catched_ << std::endl;
+  } else if (_msg.data() == "PLATFORM" && blue_platform_catched_) {
+    blue_platform_catched_ = false;
+    this->blue_detach_platform_pubs_[blue_platform_id_catched_].Publish(empty_msg);
+    igndbg << "detach platform " << blue_platform_id_catched_ << std::endl;
+  } else {
+    igndbg << "detach not_supported: '" << _msg.data() << "'" << std::endl;
+  }
+}
+
+void GameManager::OnYellowRobotCatch(const msgs::StringMsg &_msg)
+{
+  igndbg << "GameManager: OnYellowRobotCatch()" << std::endl;
+
+  if (_msg.data() != "COLUMN" && _msg.data() != "PLATFORM") {
+    igndbg << "attach not_supported: '" << _msg.data() << "'" << std::endl;
+    return;
+  }
+
+  const double catch_radius = 0.150;
+  const double body_offset = 0.25 / 2 + catch_radius;
+
+  gz::math::Quaterniond robot_quaternion(
+    yellow_robot_orientation_.w(),
+    yellow_robot_orientation_.x(),
+    yellow_robot_orientation_.y(),
+    yellow_robot_orientation_.z());
+  gz::math::Vector3d robot_euler(robot_quaternion.Euler());
+
+  const double initial_vector_x = 1.0 * body_offset;
+  const double initial_vector_y = 0.0;
+
+  const double projected_offset_x = initial_vector_x * std::cos(robot_euler.Z()) - initial_vector_y * std::sin(robot_euler.Z());
+  const double projected_offset_y = initial_vector_y * std::cos(robot_euler.Z()) + initial_vector_x * std::sin(robot_euler.Z());
+
+  const double catch_x = yellow_robot_position_.x() + projected_offset_x;
+  const double catch_y = yellow_robot_position_.y() + projected_offset_y;
+
+  igndbg << "yellow_position"
+        << ", x: " << yellow_robot_position_.x()
+        << ", y: " << yellow_robot_position_.y()
+        << std::endl;
+  igndbg << "catch"
+        << ", x: " << catch_x
+        << ", y: " << catch_y
+        << std::endl;
+
+  if (_msg.data() == "COLUMN") {
+    auto closest_column_ids = get_closest_column_ids_sorted(catch_x, catch_y, catch_radius);
+    if (!closest_column_ids.empty()) {
+      int closest_id = closest_column_ids[0];
+      msgs::Empty empty_msg;
+      this->yellow_attach_column_pubs_[closest_id].Publish(empty_msg);
+      yellow_column_catched_ = true;
+      yellow_column_id_catched_ = closest_id;
+      igndbg << "attach column " << closest_id << std::endl;
+    }
+  } else if (_msg.data() == "PLATFORM") {
+    auto highest_platform_ids = get_highest_platform_ids_sorted(catch_x, catch_y, catch_radius);
+    if (!highest_platform_ids.empty()) {
+      int highest_id = highest_platform_ids[0];
+      msgs::Empty empty_msg;
+      this->yellow_attach_platform_pubs_[highest_id].Publish(empty_msg);
+      yellow_platform_catched_ = true;
+      yellow_platform_id_catched_ = highest_id;
+      igndbg << "attach platform " << highest_id << std::endl;
+    }
+  }
+}
+
+void GameManager::OnYellowRobotRelease(const msgs::StringMsg &_msg)
+{
+  igndbg << "GameManager: OnYellowRobotRelease()" << std::endl;
+  msgs::Empty empty_msg;
+  if (_msg.data() == "COLUMN" && yellow_column_catched_) {
+    yellow_column_catched_ = false;
+    this->yellow_detach_column_pubs_[yellow_column_id_catched_].Publish(empty_msg);
+    igndbg << "detach column " << yellow_column_id_catched_ << std::endl;
+  } else if (_msg.data() == "PLATFORM" && yellow_platform_catched_) {
+    yellow_platform_catched_ = false;
+    this->yellow_detach_platform_pubs_[yellow_platform_id_catched_].Publish(empty_msg);
+    igndbg << "detach platform " << yellow_platform_id_catched_ << std::endl;
   } else {
     igndbg << "detach not_supported: '" << _msg.data() << "'" << std::endl;
   }

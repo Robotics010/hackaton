@@ -62,30 +62,43 @@ class IGNITION_GAZEBO_VISIBLE GameManager
 
     void OnPosesInfoUpdate(const msgs::Pose_V &_msg);
     std::string poses_info_topic;
-    msgs::Vector3d robot_position_;
-    msgs::Quaternion robot_orientation_;
+    msgs::Vector3d blue_robot_position_;
+    msgs::Quaternion blue_robot_orientation_;
+    msgs::Vector3d yellow_robot_position_;
+    msgs::Quaternion yellow_robot_orientation_;
     std::unordered_map<int, msgs::Vector3d> column_positions_;
     std::unordered_map<int, msgs::Vector3d> platform_positions_;
 
-    void OnRobotCatch(const msgs::StringMsg &_msg);
-    std::string robot_catch_topic;
-    bool column_catched_ {false};
-    int column_id_catched_;
-    bool platform_catched_ {false};
-    int platform_id_catched_;
+    void OnBlueRobotCatch(const msgs::StringMsg &_msg);
+    bool blue_column_catched_ {false};
+    int blue_column_id_catched_;
+    bool blue_platform_catched_ {false};
+    int blue_platform_id_catched_;
 
-    void OnRobotRelease(const msgs::StringMsg &_msg);
-    std::string robot_release_topic;
+    void OnBlueRobotRelease(const msgs::StringMsg &_msg);
+
+    void OnYellowRobotCatch(const msgs::StringMsg &_msg);
+    bool yellow_column_catched_ {false};
+    int yellow_column_id_catched_;
+    bool yellow_platform_catched_ {false};
+    int yellow_platform_id_catched_;
+
+    void OnYellowRobotRelease(const msgs::StringMsg &_msg);
 
     std::vector<int> get_closest_column_ids_sorted(
       const double& x, const double& y, const double& radius_m);
     std::vector<int> get_highest_platform_ids_sorted(
       const double& x, const double& y, const double& radius_m);
 
-    std::unordered_map<int, transport::Node::Publisher> attach_column_pubs_;
-    std::unordered_map<int, transport::Node::Publisher> detach_column_pubs_;
-    std::unordered_map<int, transport::Node::Publisher> attach_platform_pubs_;
-    std::unordered_map<int, transport::Node::Publisher> detach_platform_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> blue_attach_column_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> blue_detach_column_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> blue_attach_platform_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> blue_detach_platform_pubs_;
+
+    std::unordered_map<int, transport::Node::Publisher> yellow_attach_column_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> yellow_detach_column_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> yellow_attach_platform_pubs_;
+    std::unordered_map<int, transport::Node::Publisher> yellow_detach_platform_pubs_;
 };
 } // namespace systems
 
